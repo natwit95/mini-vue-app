@@ -2,7 +2,9 @@
   <div class="client-item">
     <h2>
       {{ client.name.first }} {{ client.name.last }}
-      <button v-on:click="showMore" class="show-more">{{showInfo ? '˄' : '˅'}} </button>
+      <button v-on:click="showMore" class="show-more">
+        {{ showInfo ? "˄" : "˅" }}
+      </button>
     </h2>
     <div class="client-info" v-if="showInfo">
       <table>
@@ -46,6 +48,7 @@ export default {
 .client-item {
   background: #f1ebeb;
   padding: 10px;
+  margin-top: 10px;
   border-bottom: 1px #ccc dotted;
 }
 .show-more {
@@ -56,6 +59,9 @@ export default {
   border-radius: 50%;
   cursor: pointer;
   float: right;
+}
+.client-info {
+  margin-top: 10px;
 }
 
 table {
