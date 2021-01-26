@@ -1,7 +1,7 @@
 <template>
   <div>
     <Search v-bind:test="search" />
-    <ClientsList v-bind:clients="handleSearch" />
+    <ClientsList v-bind:clients="clients" />
   </div>
 </template>
 
@@ -19,9 +19,9 @@ export default {
   data() {
     return {
       clients: [],
-      search: "",
     };
   },
+  props: ["searchTerm"],
   methods: {},
 
   computed: {
@@ -29,7 +29,7 @@ export default {
       return this.clients.filter((client) => {
         return client.name.first
           .toLowerCase()
-          .includes(this.search.toLowerCase());
+          .includes(this.searchTerm.toLowerCase());
       });
     },
   },
