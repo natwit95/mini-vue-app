@@ -44,7 +44,6 @@ export default {
                 phone: this.phone,
                 isActive: true,
                 about: ""
-
             }
             //Send up to parent
             this.$emit('add-client', newClient)

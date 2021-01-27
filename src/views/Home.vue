@@ -36,7 +36,7 @@ export default {
         isActive, 
         about
       })
-      .then(resp => this.clients = [...this.clients, resp.data] )
+      .then(resp => this.clients = [...this.clients, JSON.parse(resp.config.data)])
       .catch(err => console.log(err))
     }
   },
