@@ -2,7 +2,6 @@
   <div class="client-item">
     <h2>
       {{ client.firstName }} {{ client.lastName }}
-
       <button v-on:click="showMore" class="show-more">
         {{ showInfo ? "˄" : "˅" }}
       </button>

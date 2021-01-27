@@ -1,7 +1,7 @@
 <template>
     <div class="client-form">
-        <form @submit="addClient">
-            <input type="text" v-model="firstName" name="firstName" placeholder="First Name">
+        <form @submit.prevent="addClient">
+            <input type="text" v-model="firstName" name="firstName" placeholder="First Name" required>
             <input type="text" v-model="lastName" name="lastName" placeholder="Last Name">
             <input type="text" v-model="address" name="address" placeholder="Address">
             <input type="number" v-model="age" name="age" placeholder="Age">
@@ -32,7 +32,6 @@ export default {
     },
     methods: {
         addClient(e) {
-            e.preventDefault()
             const newClient = {
                 id: this.id,
                 firstName: this.firstName,
@@ -47,6 +46,8 @@ export default {
             }
             //Send up to parent
             this.$emit('add-client', newClient)
+e.target.reset()
+            
 
         }
     }
