@@ -1,7 +1,8 @@
 <template>
   <div class="client-item">
     <h2>
-      {{ client.name.first }} {{ client.name.last }}
+      {{ client.firstName }} {{ client.lastName }}
+
       <button v-on:click="showMore" class="show-more">
         {{ showInfo ? "˄" : "˅" }}
       </button>
@@ -14,6 +15,7 @@
           <th scope="col">Company</th>
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
+          <th scope="col">Active?</th>
         </tr>
         <tr>
           <td>{{ client.address }}</td>
@@ -21,6 +23,13 @@
           <td>{{ client.company }}</td>
           <td>{{ client.email }}</td>
           <td>{{ client.phone }}</td>
+          <td>
+            <img v-if="client.isActive" src="../assets/checked.png" />
+            <img
+              v-if="client.isActive == false"
+              src="../assets/unavailable.png"
+            />
+          </td>
         </tr>
       </table>
     </div>
@@ -40,6 +49,7 @@ export default {
     showMore() {
       this.showInfo = !this.showInfo;
     },
+    checkStatus() {},
   },
 };
 </script>
