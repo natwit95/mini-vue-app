@@ -1,7 +1,8 @@
 <template>
   <div>
+    <SearchBar v-on:input="handleSearch"/>
     <AddClient v-on:add-client="addClient"/>
-    <ClientsList v-bind:clients="clients" />
+    <ClientsList v-bind:clients="handleSearch(searchTerm)" />
   </div>
 </template>
 
@@ -9,23 +10,25 @@
 import axios from "axios";
 import ClientsList from "../components/ClientsList";
 import AddClient from "../components/AddClient"
+import SearchBar from "../components/SearchBar"
 
 export default {
   name: "Home",
   components: {
     ClientsList,
-    AddClient
+    AddClient,
+    SearchBar
   },
   data() {
     return {
       clients: [],
+      searchTerm: "",
     };
   },
   methods: {
     addClient(newClient) {
-      const {id,firstName, lastName, address, age, company, email, phone, isActive, about} = newClient
+      const {firstName, lastName, address, age, company, email, phone, isActive, about} = newClient
       axios.post('https://next.json-generator.com/api/json/get/N1sIyy_19', { 
-        id,
         firstName, 
         lastName, 
         address, 
@@ -38,7 +41,13 @@ export default {
       })
       .then(resp => this.clients = [...this.clients, JSON.parse(resp.config.data)])
       .catch(err => console.log(err))
-    }
+    },
+     handleSearch(value) {
+      this.searchTerm = value
+      return this.clients.filter((client) => { 
+        return client.lastName.toLowerCase().includes(this.searchTerm.toLowerCase());
+      });
+    },
   },
 
   created() {

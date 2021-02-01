@@ -28,6 +28,7 @@
               v-if="client.isActive == false"
               src="../assets/unavailable.png"
             />
+           
           </td>
         </tr>
       </table>
